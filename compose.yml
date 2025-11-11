@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  dice-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: dice-app:ibra
+    container_name: flask-dice-app
+    ports:
+      - "8888:5000"
+    environment:
+      - DICE_SIDES=${DICE_SIDES:-6}
+    env_file:
+      - .env
+    restart: unless-stopped
+
