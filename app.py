@@ -7,15 +7,11 @@ app = Flask(__name__)
 
 def get_sides():
     """Return how many sides the die should have based on the DICE_SIDES env var."""
-    # TODO: leer DICE_SIDES desde la variable de entorno (usa os.getenv como base)
-    # TODO: convertirlo a int, validar que sea >= 2 y devolverlo
-    # TODO: si la variable no existe o es invalida, devolver 6
-    DICE_SLIDES = int(os.getenv("DICE_SLIDES", 6))
-    print(DICE_SLIDES)
-    if DICE_SLIDES < 2:
-        DICE_SLIDES = 6
-
-    return DICE_SLIDES  # placeholder para que la app arranque
+    DICE_SIDES = int(os.getenv("DICE_SIDES", "6"))
+    if DICE_SIDES < 2:
+        DICE_SIDES = 6
+    
+    return DICE_SIDES
 
 
 @app.route("/")
