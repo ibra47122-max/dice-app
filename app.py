@@ -10,14 +10,19 @@ def get_sides():
     # TODO: leer DICE_SIDES desde la variable de entorno (usa os.getenv como base)
     # TODO: convertirlo a int, validar que sea >= 2 y devolverlo
     # TODO: si la variable no existe o es invalida, devolver 6
-    return 6  # placeholder para que la app arranque
+    DICE_SLIDES = int(os.getenv("DICE_SLIDES", 6))
+    print(DICE_SLIDES)
+    if DICE_SLIDES < 2:
+        DICE_SLIDES = 6
+
+    return DICE_SLIDES  # placeholder para que la app arranque
 
 
 @app.route("/")
 def index():
     sides = get_sides()
     # TODO: generar un numero aleatorio entre 1 y `sides`
-    result = 1
+    result = random.randint(1, sides)
     return render_template("index.html", result=result, sides=sides)
 
 
